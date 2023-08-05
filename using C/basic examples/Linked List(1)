@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct student
+{
+    int id;
+    char name[25];
+    char dept[25];
+    char sec;
+    float cgpa;
+    char phone[11];
+
+    struct student *next;
+};
+
+
+int main()
+{
+    struct student *Student[3];
+
+    Student[0]  = (struct student*)  malloc (sizeof(struct student));
+    Student[1]  = (struct student*)    malloc (sizeof(struct student));
+    Student[2]  = (struct student*)    malloc (sizeof(struct student));
+
+    Student[0]->id = 5026;
+    Student[1]->id = 5505;
+    Student[2]->id = 5553;
+
+    strcpy(Student[0]->name, "Reliable");
+    strcpy(Student[1]->name, "Hulk");
+    strcpy(Student[2]->name, "Shadow");
+
+    strcpy(Student[0]->dept, "CSE");
+    strcpy(Student[1]->dept, "CSE");
+    strcpy(Student[2]->dept, "CSE");
+
+    Student[0]->sec = 'E';
+    Student[1]->sec = 'E';
+    Student[2]->sec = 'E';
+
+    Student[0]->cgpa = 3.9;
+    Student[1]->cgpa = 3.5;
+    Student[2]->cgpa = 3.8;
+
+    strcpy(Student[0]->phone, "17");
+    strcpy(Student[1]->phone, "72");
+    strcpy(Student[2]->phone, "14");
+
+    // Link
+    Student[0]->next = Student[1];
+    Student[1]->next = Student[2];
+    Student[2]->next = NULL;
+
+    //output
+    for(int i=0; i<3; i++)
+    {
+        printf("Student-%d ID           : %d \n",i+1, Student[i]->id);
+        printf("Student-%d Name         : %s \n",i+1, Student[i]->name);
+        printf("Student-%d Department   : %s \n",i+1, Student[i]->dept);
+        printf("Student-%d Section      : %c \n",i+1, Student[i]->sec);
+        printf("Student-%d CGPA         : %.2f \n",i+1, Student[i]->cgpa);
+        printf("Student-%d Phone        : %s \n\n",i+1, Student[i]->phone);
+    }
+
+    return 0;
+}
