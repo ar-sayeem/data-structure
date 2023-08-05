@@ -1,0 +1,27 @@
+// %[^\n]
+/*
+#include<stdio.h>
+int main()
+{
+    char str[35];
+    printf("Enter a string: ");
+    scanf("%[^\n]s", &str);
+    printf("Entered string: %s", str);
+    return 0;
+}
+*/
+
+// gets()
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    char str[35];
+    printf("Enter a string: ");
+    gets(str);
+    fflush(stdin);
+    printf("Entered string: ");
+    puts(str);
+    return 0;
+}
