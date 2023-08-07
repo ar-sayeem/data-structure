@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 
+// Struct variable declare.
 struct student
 {
     int id;
@@ -14,19 +15,23 @@ struct student
     struct student *next;
 };
 
-
 int main()
 {
+
+// Declaring pointer type variable.
     struct student *Student[3];
 
-    Student[0]  = (struct student*)  malloc (sizeof(struct student));
-    Student[1]  = (struct student*)    malloc (sizeof(struct student));
-    Student[2]  = (struct student*)    malloc (sizeof(struct student));
+// Memory allocation for variables
+    Student[0]  = (struct student*) malloc (sizeof(struct student));
+    Student[1]  = (struct student*) malloc (sizeof(struct student));
+    Student[2]  = (struct student*) malloc (sizeof(struct student));
 
+// Value assign.
     Student[0]->id = 5026;
     Student[1]->id = 5505;
     Student[2]->id = 5553;
 
+// The strcpy() is a library function that copy the content of one string to another.
     strcpy(Student[0]->name, "Reliable");
     strcpy(Student[1]->name, "Hulk");
     strcpy(Student[2]->name, "Shadow");
@@ -47,12 +52,12 @@ int main()
     strcpy(Student[1]->phone, "72");
     strcpy(Student[2]->phone, "14");
 
-    // Link
+// Link.
     Student[0]->next = Student[1];
     Student[1]->next = Student[2];
     Student[2]->next = NULL;
 
-    //output
+// Output.
     for(int i=0; i<3; i++)
     {
         printf("Student-%d ID           : %d \n",i+1, Student[i]->id);
@@ -62,6 +67,5 @@ int main()
         printf("Student-%d CGPA         : %.2f \n",i+1, Student[i]->cgpa);
         printf("Student-%d Phone        : %s \n\n",i+1, Student[i]->phone);
     }
-
     return 0;
 }
