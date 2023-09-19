@@ -1,0 +1,56 @@
+/// Doubly Linked List
+/// Create Node and Display
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *prev;
+    struct node *next;
+} *head;
+
+void CreateNode(int n)
+{
+    struct node *newnode, *temp;
+    head = (struct node*) malloc (sizeof(struct node));
+    printf("Data of Node-1:\n");
+    scanf("%d", &head->data);
+    head->prev=NULL;
+    head->next = NULL;
+    temp = head;
+    for(int i=1; i<n; i++)
+    {
+        newnode = (struct node*) malloc(sizeof(struct node));
+        printf("Data of Node-%d:\n", i+1);
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;
+        newnode->prev=temp;
+        temp->next=newnode;
+        temp = newnode;
+    }
+}
+
+void Displaylist()
+{
+    struct node *temp;
+    temp=head;
+    printf("Entered Data:\n");
+    while(temp!=NULL)
+    {
+        printf("%d  ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int n, item, pos, value;
+    printf("Number of Nodes?\n");
+    scanf("%d", &n);
+    CreateNode(n);
+    Displaylist();
+    return 0;
+}
