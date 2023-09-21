@@ -1,0 +1,60 @@
+/// Singly Linked List
+/// Create | Insert | Delete | Search
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;               // Declaration of variable data of node.
+    struct node *next;      // Self referential pointer *next(address of next node) of node.
+} *head;                    // Object of node.
+
+/// Create Linked List
+void CreateList(int n)
+{
+    struct node *newnode, *temp;
+    head = (struct node*) malloc (sizeof(struct node));     // Memory allocation for head(1st node).
+    printf("Enter the value of Node-1:\n");
+    scanf("%d", &head->data);       // Value of head node.
+    head->next = NULL;              // Set head->next as NULL.
+    temp = head;                    // Keep head in temp to traverse afterwards.
+
+    // Using for-loop to traverse.
+    for(int i=1; i<n; i++)
+    {
+        newnode = (struct node*) malloc (sizeof(struct node));    // Memory allocation for new nodes.
+        printf("Enter the value of Node-%d\n", i+1);
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;       // Address of last node is NULL.
+        temp->next = newnode;       // Replace address of new node in temp.
+        temp = newnode;             // Newly node is temp now.
+    }
+}
+
+/// Display Linked List
+void DisplayList()
+{
+    struct node *temp;
+    temp = head;
+    printf("\n#Display List#\n");
+    while(temp != NULL)
+    {
+        printf("%d  ", temp->data);     // Display temp data.
+        temp = temp->next;              // Temp->next is temp now.
+    }
+    printf("\n");
+}
+
+/// Main Function
+int main()
+{
+    int n;
+    printf("How many elements?\n");
+    scanf("%d", &n);                    // User input node number.
+    CreateList(n);
+    DisplayList();
+
+    return 0;
+}
