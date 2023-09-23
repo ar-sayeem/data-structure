@@ -1,7 +1,6 @@
 /// Singly Linked List
 /// Create | Insert | Delete | Search
 
-
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -14,7 +13,7 @@ struct node
 /// Create Linked List
 void CreateList(int n)
 {
-    struct node *newnode, *temp;
+    struct node *newNode, *temp;
     head = (struct node*) malloc (sizeof(struct node));     // Memory allocation for head(1st node).
     printf("Enter the value of Node-1:\n");
     scanf("%d", &head->data);       // Value of head node.
@@ -24,13 +23,69 @@ void CreateList(int n)
     // Using for-loop to traverse.
     for(int i=1; i<n; i++)
     {
-        newnode = (struct node*) malloc (sizeof(struct node));    // Memory allocation for new nodes.
+        newNode = (struct node*) malloc (sizeof(struct node));    // Memory allocation for new nodes.
         printf("Enter the value of Node-%d\n", i+1);
-        scanf("%d", &newnode->data);
-        newnode->next = NULL;       // Address of last node is NULL.
-        temp->next = newnode;       // Replace address of new node in temp.
-        temp = newnode;             // Newly node is temp now.
+        scanf("%d", &newNode->data);
+        newNode->next = NULL;       // Address of last node is NULL.
+        temp->next = newNode;       // Replace address of new node in temp.
+        temp = newNode;             // Newly node is temp now.
     }
+}
+
+/// Insert at Begin
+void InsertBegin()
+{
+    struct node *newNode;
+    newNode = (struct node*) malloc (sizeof(struct node));
+    printf("Enter the value you want insert at beginning:\n");
+    scanf("%d", &newNode->data);
+    newNode->next = head;
+    head = newNode;
+}
+
+/// Insert at Middle / Any Position
+void InsertMid(int position)
+{
+    struct node *newNode, *temp;
+    temp = head;
+    if (position == 1)
+    {
+        newNode->next = head;
+        head = newNode;
+    }
+    else
+    {
+        temp = head;
+        int count = 1;
+        while (temp != NULL && count < position - 1)
+        {
+            temp = temp->next;
+            count++;
+        }
+        if (temp == NULL)
+        {
+            printf("Invalid position.\n");
+            exit(1);
+        }
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+}
+
+/// Insert at End
+void InsertEnd()
+{
+    struct node *newNode, *temp;
+    temp = head;
+    while(temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    newNode = (struct node*) malloc (sizeof(struct node));
+    printf("Enter the value you want to insert at the end :\n");
+    scanf("%d", &newNode->data);
+    newNode->next = NULL;
+    temp->next = newNode;
 }
 
 /// Display Linked List
@@ -50,10 +105,24 @@ void DisplayList()
 /// Main Function
 int main()
 {
-    int n;
+    int n, pos;
     printf("How many elements?\n");
     scanf("%d", &n);                    // User input node number.
     CreateList(n);
+    DisplayList();
+
+    printf("\n");
+    InsertBegin();
+    DisplayList();
+/*
+    printf("\n");
+    printf("Enter the position you want to add new node:\n");
+    scanf("%d", &pos);
+    InsertMid(pos);
+    DisplayList();
+*/
+    printf("\n");
+    InsertEnd();
     DisplayList();
 
     return 0;
