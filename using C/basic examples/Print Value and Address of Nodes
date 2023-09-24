@@ -1,0 +1,41 @@
+/// Value & Address of Particular Nodes
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int a, c;
+    float b;
+    struct node *next;
+} *Node1, *Node2;
+
+int main()
+{
+    Node1 = (struct node*) malloc (sizeof(struct node));
+    Node2 = (struct node*) malloc (sizeof(struct node));
+
+    Node1->a = Node2->a;
+    Node1->b = 3.6;
+    Node1->c = 3;
+
+    Node1->next = Node2;
+    Node2->b = 3.5;
+    Node2->c = 9;
+    Node2->next = NULL;
+
+    printf("#Values of Node-1:\n");
+    printf("a = %d\n", Node1->a);
+    printf("b = %.1f\n", Node1->b);
+    printf("c = %d\n", Node1->c);
+
+    printf("\n#Values of Node-2:\n");
+    printf("a = %d\n", Node2->a);
+    printf("b = %.1f\n", Node2->b);
+    printf("c = %d\n", Node2->c);
+
+    printf("\n#Address of Nodes:\n");
+    printf("Node-1 : %p\n", Node1->next);
+    printf("Node-2 : %p\n", Node2->next);
+
+    return 0;
+}
