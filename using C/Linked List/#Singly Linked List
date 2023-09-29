@@ -3,7 +3,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-
+int pos;
 struct node
 {
     int data;               // Declaration of variable data of node.
@@ -24,13 +24,17 @@ void CreateList(int n)
     for(int i=1; i<n; i++)
     {
         newNode = (struct node*) malloc (sizeof(struct node));    // Memory allocation for new nodes.
-        printf("Enter the value of Node-%d\n", i+1);
+        printf("Enter the value of Node-%d:\n", i+1);
         scanf("%d", &newNode->data);
         newNode->next = NULL;       // Address of last node is NULL.
         temp->next = newNode;       // Replace address of new node in temp.
         temp = newNode;             // Newly node is temp now.
     }
+
+    printf("\nNew Linked List Created:\n");
 }
+
+/// Insert at Beginning | Middle | End
 
 /// Insert at Begin
 void InsertBegin()
@@ -47,6 +51,7 @@ void InsertBegin()
 void InsertMid(int position)
 {
     struct node *newNode, *temp;
+
     temp = head;
     if (position == 1)
     {
@@ -88,12 +93,108 @@ void InsertEnd()
     temp->next = newNode;
 }
 
+///--------------------------------------------------------------------------------------------
+
+/// Insert Choice - First | Mid | Last
+void InsertChoice(int ins)
+{
+    int insertChoice;
+    printf("What to do?\n");
+    printf("1. Insert at Beginning\n2. Insert at Middle\n3. Insert at Ending\n");
+    scanf("%d", &ins);
+    switch(ins)
+    {
+    case 1:
+        InsertBegin();
+        break;
+    case 2:
+        printf("Enter the position you want to add new node:\n");
+        scanf("%d", &pos);
+        InsertMid(pos);
+        break;
+    case 3:
+        InsertEnd();
+    default:
+        printf("Invalid Choice! Choose between 1 to 3.\n");
+        InsertChoice(ins);
+    }
+}
+
+///--------------------------------------------------------------------------------------------
+
+/// Delete from Beginning | Middle | End
+
+/// Delete from Beginning
+void DeleteBeginning()
+{
+    struct node *temp;
+    temp = head;
+    head = head->next;
+    free(temp);
+    printf("After deleting first data:\n");
+}
+
+/// Delete from Middle or any Position
+void DeleteMid(int position)
+{
+    struct node *temp, *prev;
+    temp = head;
+    for(int i=1; i<position; i++)
+    {
+        prev = temp;
+        temp = temp->next;
+        free(temp);
+    }
+}
+
+/// Delete from Ending
+void DeleteEnd()
+{
+    struct node *temp, *delEnd;
+    temp = head;
+    while(temp->next->next != NULL)
+    {
+        temp = temp->next;
+    }
+    delEnd = temp->next;
+    temp->next = NULL;
+    free(delEnd);
+
+    printf("\nAfter Deleting Last data:");
+}
+
+/// Delete Choice - First | Mid | Last
+void DeleteChoice(int del)
+{
+    int delChoice, position;
+    printf("What to do?\n");
+    printf("1. Delete Beginning\n2. Delete Middle\n3. Delete from Ending\n");
+    scanf("%d", &delChoice);
+    printf("\n");
+
+    switch(delChoice)
+    {
+    case 1:
+        DeleteBeginning();
+        break;
+    case 2:
+        DeleteMid(position);
+        break;
+    case 3:
+        DeleteEnd();
+        break;
+    default:
+        printf("Invalid Choice! Choose between 1 to 3.\n");
+        DeleteChoice(del);
+    }
+}
+
 /// Display Linked List
 void DisplayList()
 {
     struct node *temp;
     temp = head;
-    printf("\n#Display List#\n");
+    printf("\n***Display Update***\n");
     while(temp != NULL)
     {
         printf("%d  ", temp->data);     // Display temp data.
@@ -105,24 +206,38 @@ void DisplayList()
 /// Main Function
 int main()
 {
-    int n, pos;
+    int n, pos, ins, del;
     printf("How many elements?\n");
     scanf("%d", &n);                    // User input node number.
     CreateList(n);
     DisplayList();
 
-    printf("\n");
-    InsertBegin();
-    DisplayList();
-/*
+    //printf("\n");
+    //InsertBegin();
+    //DisplayList();
+
+    /*
     printf("\n");
     printf("Enter the position you want to add new node:\n");
     scanf("%d", &pos);
     InsertMid(pos);
     DisplayList();
-*/
+    */
+
+    //printf("\n");
+    //InsertEnd();
+    //DisplayList();
+
+    //printf("\n");
+    //DeleteEnd();
+    //DisplayList();
+
     printf("\n");
-    InsertEnd();
+    InsertChoice(ins);
+    DisplayList();
+
+    printf("\n");
+    DeleteChoice(del);
     DisplayList();
 
     return 0;
