@@ -1,3 +1,5 @@
+/* https://github.com/ar-sayeem */
+
 /// Singly Linked List
 /// Create | Insert | Delete | Search
 
@@ -9,6 +11,8 @@ struct node
     int data;               // Declaration of variable data of node.
     struct node *next;      // Self referential pointer *next(address of next node) of node.
 } *head;                    // Object of node.
+
+///------------------------------------------------------------------------------------------------------
 
 /// Create Linked List
 void CreateList(int n)
@@ -33,6 +37,8 @@ void CreateList(int n)
 
     printf("\nNew Linked List Created:\n");
 }
+
+///------------------------------------------------------------------------------------------------------
 
 /// Insert at Beginning | Middle | End
 
@@ -93,15 +99,16 @@ void InsertEnd()
     temp->next = newNode;
 }
 
-///--------------------------------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------------
 
 /// Insert Choice - First | Mid | Last
 void InsertChoice(int ins)
 {
     int insertChoice;
     printf("What to do?\n");
-    printf("1. Insert at Beginning\n2. Insert at Middle\n3. Insert at Ending\n");
+    printf("1. Insert at Beginning\n2. Insert at Middle\n3. Insert at Ending\n4. Go to Delete\n");
     scanf("%d", &ins);
+
     switch(ins)
     {
     case 1:
@@ -114,13 +121,16 @@ void InsertChoice(int ins)
         break;
     case 3:
         InsertEnd();
+        break;
+    case 4:
+        break;
     default:
-        printf("Invalid Choice! Choose between 1 to 3.\n");
+        printf("Invalid Choice! Choose between 1 to 4.\n");
         InsertChoice(ins);
     }
 }
 
-///--------------------------------------------------------------------------------------------
+///------------------------------------------------------------------------------------------------------
 
 /// Delete from Beginning | Middle | End
 
@@ -168,7 +178,7 @@ void DeleteChoice(int del)
 {
     int delChoice, position;
     printf("What to do?\n");
-    printf("1. Delete Beginning\n2. Delete Middle\n3. Delete from Ending\n");
+    printf("1. Delete Beginning\n2. Delete Middle\n3. Delete from Ending\n4. Go to Search\n");
     scanf("%d", &delChoice);
     printf("\n");
 
@@ -183,11 +193,43 @@ void DeleteChoice(int del)
     case 3:
         DeleteEnd();
         break;
+    case 4:
+        break;
     default:
         printf("Invalid Choice! Choose between 1 to 3.\n");
         DeleteChoice(del);
     }
 }
+
+///------------------------------------------------------------------------------------------------------
+
+/// Search a Data
+void Search(int item)
+{
+    struct node *temp;
+    temp = head;
+    int i, flag = 0;
+    for(i=1; temp!=NULL; i++)
+    {
+        if(item == temp->data)
+        {
+            flag = 1;           // flag = 1 means data found.
+            break;
+        }
+        temp = temp->next;
+    }
+    if(flag == 1)
+    {
+        printf("Data Found at node-%d\n", i);
+    }
+    else
+    {
+        printf("Invalid Search!\n");
+    }
+
+}
+
+///------------------------------------------------------------------------------------------------------
 
 /// Display Linked List
 void DisplayList()
@@ -203,34 +245,16 @@ void DisplayList()
     printf("\n");
 }
 
+///------------------------------------------------------------------------------------------------------
+
 /// Main Function
 int main()
 {
-    int n, pos, ins, del;
+    int n, pos, ins, del, s;
     printf("How many elements?\n");
     scanf("%d", &n);                    // User input node number.
     CreateList(n);
     DisplayList();
-
-    //printf("\n");
-    //InsertBegin();
-    //DisplayList();
-
-    /*
-    printf("\n");
-    printf("Enter the position you want to add new node:\n");
-    scanf("%d", &pos);
-    InsertMid(pos);
-    DisplayList();
-    */
-
-    //printf("\n");
-    //InsertEnd();
-    //DisplayList();
-
-    //printf("\n");
-    //DeleteEnd();
-    //DisplayList();
 
     printf("\n");
     InsertChoice(ins);
@@ -240,5 +264,11 @@ int main()
     DeleteChoice(del);
     DisplayList();
 
+    printf("\nWhich value to Search?\n");
+    scanf("%d", &s);
+    Search(s);
+
     return 0;
 }
+
+/* https://github.com/ar-sayeem */
