@@ -1,0 +1,105 @@
+/// Stack Using Array in C
+/// Push | Pop | Display
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int top = -1;       // initially declare top = -1.
+
+void Push(int stack[], int n)
+{
+    top++;
+    if(top == n)            // Overflow Condition.
+    {
+        printf("Stack is Full. Unable to insert!\n");
+        top--;
+    }
+    else
+    {
+        printf("Enter the value you want to insert:\n");
+        scanf("%d", &stack[top]);       // New values always insert as top.
+    }
+}
+
+//----------------------------------------------------------------------------------------
+
+void Pop()
+{
+    if(top == -1)           // Underflow Condition.
+    {
+        printf("Stack is empty. Unable to delete!\n");
+    }
+    else
+    {
+        top--;
+    }
+}
+
+//----------------------------------------------------------------------------------------
+
+/// Display Bottom to Top
+
+void Display_AI(int stack[])
+{
+    printf("\nDisplay According Insertion:\n");
+    for(int i=0; i<=top; i++)
+    {
+        printf("%d\n", stack[i]);
+    }
+}
+
+//----------------------------------------------------------------------------------------
+
+/// Display Top to Bottom
+
+void Display_T2B(int stack[])
+{
+    printf("\nDisplay Top to Bottom:\n");
+    for(int i=top; i>=0; i--)
+    {
+        printf("%d\n", stack[i]);
+    }
+}
+
+//----------------------------------------------------------------------------------------
+
+int main()
+{
+    int n, Choice=0;
+    printf("Size of stack?\n");
+    scanf("%d", &n);
+    int stack[n];
+
+    printf("1. Push\n");
+    printf("2. Pop\n");
+    printf("3. Display Top to Bottom\n");
+    printf("4. Display According Insertion\n");
+    printf("5. Exit\n");
+
+    while(Choice!=5)
+    {
+        printf("\nEnter your Choice:\n");
+        scanf("%d", &Choice);
+
+        switch(Choice)
+        {
+        case 1:
+            Push(stack, n);
+            break;
+        case 2:
+            Pop();
+            break;
+        case 3:
+            Display_T2B(stack);
+            break;
+        case 4:
+            Display_AI(stack);
+            break;
+        case 5:
+            break;
+        default :
+            printf("\nEnter value between 1-5.");
+        }
+    }
+    return 0;
+}
