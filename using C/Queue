@@ -1,0 +1,103 @@
+/// DATA STRUCTURE
+/// Queue - enQueue | deQueue
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int front=-1, rear = -1;            // Predeclared front & rear as -1(empty).
+
+void enQueue(int Q[], int n)
+{
+    rear++;
+    if(rear == n)           // Overflow Condition.
+    {
+        printf("Queue is full. Unable to insert!\n");
+        rear--;
+    }
+    else
+    {
+        if(front == -1)
+        {
+            front++;
+        }
+        printf("Enter your value:\n");
+        scanf("%d", &Q[rear]);
+    }
+}
+
+///------------------------------------------------------------------------------------------
+
+void deQueue(int Q[])
+{
+    if(front==-1 && rear==-1)           // Underflow Condition.
+    {
+        printf("Queue is empty. Unable to delete!\n");
+    }
+    else
+    {
+        printf("%d id Deleted from the Queue.\n", Q[front]);
+        front++;
+        if(front>rear)
+        {
+            front = rear = -1;
+        }
+    }
+}
+
+///------------------------------------------------------------------------------------------
+
+void Display(int Q[])
+{
+    if(front==-1)
+    {
+        printf("Queue is empty. No data to show!\n");
+    }
+    else
+    {
+        printf("Queued Values:\n");
+        for(int i=front; i<=rear; i++)
+        {
+            printf("%d\n", Q[i]);
+        }
+    }
+
+}
+
+///------------------------------------------------------------------------------------------
+
+int main()
+{
+    int n, Choice=0;
+    printf("Size of Queue?\n");
+    scanf("%d", &n);
+
+    int Q[n];
+
+    printf("1. enQueue\n");
+    printf("2. dnQueue\n");
+    printf("3. Display\n");
+    printf("4. Exit\n");
+
+    while(Choice!=4)
+    {
+        printf("\nEnter your choice:\n");
+        scanf("%d", &Choice);
+        switch(Choice)
+        {
+        case 1:
+            enQueue(Q, n);
+            break;
+        case 2:
+            deQueue(Q);
+            break;
+        case 3:
+            Display(Q);
+            break;
+        case 4:
+            break;
+        default:
+            printf("Please choose between 1 to 4.\n");
+        }
+    }
+    return 0;
+}
