@@ -1,0 +1,66 @@
+/// Doubly Linked List
+/// Create Node | Display
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *prev;
+    struct node *next;
+}*head;
+
+void CreateNode(int n)
+{
+    struct node *newnode, *temp;
+    head = (struct node*) malloc(sizeof(struct node));
+    printf("Data of Node-1:\n");
+    scanf("%d", &head->data);
+
+    head->prev=NULL;            // Initially head->prev is empty.
+    head->next = NULL;          // Initially head->next is empty.
+    temp = head;                // Copy head into temp for traversing.
+
+    for(int i=1; i<n; i++)      // Traversing
+    {
+        newnode = (struct node*) malloc (sizeof(struct node));
+        printf("Data of Node-%d:\n", i+1);
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;
+        newnode->prev=temp;
+        temp->next=newnode;
+        temp = newnode;
+    }
+}
+
+///------------------------------------------------------------------------------------------
+
+void DisplayNode()
+{
+    struct node *temp;
+    temp=head;
+    printf("\nDisplay Data:\n");
+    while(temp!=NULL)
+    {
+        printf("\n| ");
+        printf("%p  ", temp->prev);         // Address of node->prev.
+        printf("%d  ", temp->data);         // Value of data.
+        printf("%p  ", temp->next);         // // Address of node->next.
+        printf(" |\n");
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+///------------------------------------------------------------------------------------------
+
+int main()
+{
+    int n;
+    printf("Number of Nodes?\n");
+    scanf("%d", &n);
+    CreateNode(n);
+    DisplayNode();
+    return 0;
+}
