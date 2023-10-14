@@ -1,0 +1,67 @@
+/// Singly Linked List (with in-built values)
+/// Insert New-node at Beginning
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;          // self-referential pointer 'next'
+} *head, *temp;
+
+void CreateNode()
+{
+    struct node *b, *c;         // name of nodes
+// Memory allocation
+    head = (struct node*)malloc(sizeof(struct node));       // Head is refers to the 1st node
+    b = (struct node*)malloc(sizeof(struct node));
+    c = (struct node*)malloc(sizeof(struct node));
+
+// Input data
+    head->data = 5;
+    b->data = 6;
+    c->data = 7;
+
+// Link nodes
+    head->next = b;         // head's next node is b
+    b->next = c;            // a's next node is c
+    c->next = NULL;         // c's next is NULL(no nodes afterwards)
+
+    printf("Created Node:\n");
+}
+
+void InsertBegin()
+{
+    struct node *newnode;
+    newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->data = 4;
+    newnode->next = head;
+    head  = newnode;
+
+    printf("After inserting new-node at beggining:\n");
+}
+
+void DisplayNode()
+{
+    int count=0;
+    temp = head;
+    while(temp != NULL)
+    {
+        count++;
+// First print data then shift to next temp
+        printf("Node-%d = %d\n", count, temp->data);
+        temp = temp->next;
+    }
+}
+
+int main()
+{
+    CreateNode();
+    DisplayNode();
+    printf("\n");
+
+    InsertBegin();
+    DisplayNode();
+    return 0;
+}
