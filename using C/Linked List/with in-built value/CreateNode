@@ -1,8 +1,9 @@
 /// Singly Linked List (with in-built values)
+/// Create Node
 
-// Let's think we have to create a linked list,
-// where 3 node existed with data 5, 6 & 7.
-// And then we will connect the nodes.
+/* Let's think we have to create a linked list,
+   where 3 node existed with data 5, 6 & 7.
+   And then we will connect the nodes.  */
 
 #include<stdio.h>
 #include<stdlib.h>          // malloc function includes in stdlib.h
