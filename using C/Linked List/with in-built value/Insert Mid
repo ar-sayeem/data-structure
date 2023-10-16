@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>          // malloc function includes in stdlib.h
+
+struct node
+{
+    int data;
+    struct node *next;          // self-referential pointer 'next'
+} *head, *temp;
+
+void CreateNode()
+{
+    struct node *b, *c;         // name of nodes
+// Memory allocation
+    head = (struct node*)malloc(sizeof(struct node));       // Head is refers to the 1st node
+    b = (struct node*)malloc(sizeof(struct node));
+    c = (struct node*)malloc(sizeof(struct node));
+
+// Input data
+    head->data = 5;
+    b->data = 6;
+    c->data = 7;
+
+// Link nodes
+    head->next = b;         // head's next node is b
+    b->next = c;            // a's next node is c
+    c->next = NULL;         // c's next is NULL(no nodes afterwards)
+
+    printf("Created Node:\n");
+}
+
+void InsertMid(int value, int mid_data)
+{
+    struct node *newnode;
+
+    newnode =  (struct node*)malloc(sizeof(struct node));
+    newnode->data = mid_data;
+
+    temp = head;
+    while(temp->data != value)          // Traverse until get the value
+    {
+        temp = temp->next;
+    }
+// Link
+    newnode->next = temp->next;
+    temp->next = newnode;
+
+    printf("\nAfter Insert new data:\n");
+}
+
+void DisplayNode()
+{
+    int count=0;
+    temp = head;
+    while(temp != NULL)
+    {
+        count++;
+// First print data then shift to next temp
+        printf("Node-%d = %d\n", count, temp->data);
+        temp = temp->next;
+    }
+}
+
+int main()
+{
+    CreateNode();
+    DisplayNode();
+
+// in the Parentheses() of InsertMid function
+// ( after which data you want to insert new data, new data )
+
+    InsertMid(6,11);            // 6-> positioned data, 11-> newly inserted data
+    DisplayNode();
+
+    return 0;
+}
