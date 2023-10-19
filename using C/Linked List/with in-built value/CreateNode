@@ -32,6 +32,7 @@ void CreateNode()
     b->next = c;            // a's next node is c
     c->next = NULL;         // c's next is NULL(no nodes afterwards)
 
+    printf("Created Node:\n");
 }
 
 void DisplayNode()
