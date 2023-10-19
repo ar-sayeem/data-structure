@@ -1,0 +1,71 @@
+/// Singly Linked List (with in-built values)
+/// Delete a mid node
+
+#include<stdio.h>
+#include<stdlib.h>          // malloc function includes in stdlib.h
+
+struct node
+{
+    int data;
+    struct node *next;          // self-referential pointer 'next'
+} *head, *temp;
+
+void CreateNode()
+{
+    struct node *b, *c;         // name of nodes
+// Memory allocation
+    head = (struct node*)malloc(sizeof(struct node));       // Head is refers to the 1st node
+    b = (struct node*)malloc(sizeof(struct node));
+    c = (struct node*)malloc(sizeof(struct node));
+
+// Input data
+    head->data = 5;
+    b->data = 6;
+    c->data = 7;
+
+// Link nodes
+    head->next = b;         // head's next node is b
+    b->next = c;            // a's next node is c
+    c->next = NULL;         // c's next is NULL(no nodes afterwards)
+
+    printf("Created Node:\n");
+}
+
+void DeleteMid(int value)
+{
+    struct node *prev;
+    temp = head;
+    while(temp->data != value)
+    {
+        prev = temp;            // Store temp in prev;
+        temp = temp->next;
+    }
+    prev->next = temp->next;        // connect prev->next with temp->next
+    free(temp);                 // Delete temp data
+
+    printf("\nAfter deleting the mid node:\n");
+}
+
+void DisplayNode()
+{
+    int count=0;
+    temp = head;
+    while(temp != NULL)
+    {
+        count++;
+// First print data then shift to next temp
+        printf("Node-%d = %d\n", count, temp->data);
+        temp = temp->next;
+    }
+}
+
+int main()
+{
+    CreateNode();
+    DisplayNode();
+
+    DeleteMid(6);
+    DisplayNode();
+
+    return 0;
+}
