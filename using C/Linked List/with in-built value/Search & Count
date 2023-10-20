@@ -1,0 +1,75 @@
+/// Singly Linked List (with in-built values)
+/// Search Node data & Count Node No.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+} *head, *temp;
+
+void CreateNode()
+{
+    struct node *b, *c, *d, *e;
+// Memory allocation
+    head = (struct node*)malloc(sizeof(struct node));
+    b = (struct node*)malloc(sizeof(struct node));
+    c = (struct node*)malloc(sizeof(struct node));
+    d = (struct node*)malloc(sizeof(struct node));
+    e = (struct node*)malloc(sizeof(struct node));
+
+// Input data
+    head->data = 5;
+    b->data = 6;
+    c->data = 7;
+    d->data = 6;
+    e->data = 8;
+
+// Link nodes
+    head->next = b;
+    b->next = c;
+    c->next = d;
+    d->next = e;
+    e->next = NULL;
+
+    printf("Created Node:\n");
+}
+
+void Search_Count(int s)
+{
+    int count = 0;
+
+    for(temp = head; temp !=NULL; temp = temp->next)
+    {
+        if(temp->data == s)
+        {
+            count++;
+        }
+    }
+    printf("\n%d Found %d times\n", s, count);
+}
+
+void DisplayNode()
+{
+    int count=0;
+    temp = head;
+    while(temp != NULL)
+    {
+        count++;
+// First print data then shift to next temp
+        printf("Node-%d = %d\n", count, temp->data);
+        temp = temp->next;
+    }
+}
+
+int main()
+{
+    CreateNode();
+    DisplayNode();
+
+    Search_Count(6);
+
+    return 0;
+}
