@@ -1,0 +1,72 @@
+/// Singly Linked List (with in-built values)
+/// Update Node data
+
+#include<stdio.h>
+#include<stdlib.h>          // malloc function includes in stdlib.h
+
+struct node
+{
+    int data;
+    struct node *next;          // self-referential pointer 'next'
+} *head, *temp;
+
+void CreateNode()
+{
+    struct node *b, *c;         // name of nodes
+// Memory allocation
+    head = (struct node*)malloc(sizeof(struct node));       // Head is refers to the 1st node
+    b = (struct node*)malloc(sizeof(struct node));
+    c = (struct node*)malloc(sizeof(struct node));
+
+// Input data
+    head->data = 5;
+    b->data = 6;
+    c->data = 7;
+
+// Link nodes
+    head->next = b;         // head's next node is b
+    b->next = c;            // a's next node is c
+    c->next = NULL;         // c's next is NULL(no nodes afterwards)
+
+    printf("Created Node:\n");
+}
+
+void Update(int value, int upd)
+{
+    temp = head;
+    while(temp->data != value)      // Traverse until find value
+    {
+        temp = temp->next;
+    }
+    temp->data = upd;           // Change value data with upd data
+
+    printf("\nAfter updating data:\n");
+}
+
+void DisplayNode()
+{
+    int count=0;
+    temp = head;
+    while(temp != NULL)
+    {
+        count++;
+// First print data then shift to next temp
+        printf("Node-%d = %d\n", count, temp->data);
+        temp = temp->next;
+    }
+}
+
+int main()
+{
+    CreateNode();
+    DisplayNode();
+
+/// in Update function(data want to change, new data to update with)
+    Update(6, 66);
+    DisplayNode();
+
+    Update(7, 77);
+    DisplayNode();
+
+    return 0;
+}
