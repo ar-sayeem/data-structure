@@ -16,8 +16,9 @@ void Push(int stack[], int n)
     }
     else
     {
-        printf("Enter the value you want to insert:\n");
+        printf("Enter the value you want to insert: ");
         scanf("%d", &stack[top]);       // New values always insert as top.
+        printf("Item pushed!\n");
     }
 }
 
@@ -32,6 +33,7 @@ void Pop()
     else
     {
         top--;
+        printf("Item popped!\n");
     }
 }
 
@@ -66,7 +68,7 @@ void Display_T2B(int stack[])
 int main()
 {
     int n, Choice=0;
-    printf("Size of stack?\n");
+    printf("Size of stack? ");
     scanf("%d", &n);
     int stack[n];
 
@@ -78,7 +80,7 @@ int main()
 
     while(Choice!=5)
     {
-        printf("\nEnter your Choice:\n");
+        printf("\nEnter your Choice: ");
         scanf("%d", &Choice);
 
         switch(Choice)
@@ -96,6 +98,7 @@ int main()
             Display_AI(stack);
             break;
         case 5:
+            printf("\n* * * Thank You! * * *\n");
             break;
         default :
             printf("\nEnter value between 1-5.");
@@ -103,3 +106,4 @@ int main()
     }
     return 0;
 }
+
